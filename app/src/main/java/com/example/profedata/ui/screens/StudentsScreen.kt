@@ -1,6 +1,5 @@
 package com.example.profedata.ui.screens
 
-<<<<<<< Updated upstream
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.profedata.ui.theme.ProfeDataTheme // Asegúrate de que el nombre coincida con tu tema
 
@@ -10,16 +9,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-=======
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
->>>>>>> Stashed changes
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-<<<<<<< Updated upstream
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
@@ -86,49 +79,6 @@ fun StudentsScreen() {
             ) {
                 items(students) { student ->
                     StudentItem(student)
-=======
-import androidx.compose.ui.unit.dp
-import androidx.compose.material3.ExperimentalMaterial3Api
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun StudentsScreen() {
-
-    val students = listOf(
-        "Juan Pérez",
-        "María López",
-        "Carlos Sánchez",
-        "Ana Rodríguez"
-    )
-
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(text = "Estudiantes") }
-            )
-        }
-    ) { paddingValues ->
-
-        if (students.isEmpty()) {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(paddingValues),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(text = "No hay estudiantes registrados")
-            }
-        } else {
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(paddingValues)
-                    .padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                items(students) { student ->
-                    StudentItem(name = student)
->>>>>>> Stashed changes
                 }
             }
         }
@@ -136,7 +86,6 @@ fun StudentsScreen() {
 }
 
 @Composable
-<<<<<<< Updated upstream
 fun StudentItem(student: Student) {
     // Tarjeta con fondo translúcido (Glassmorphism sutil)
     Surface(
@@ -189,17 +138,5 @@ fun StudentItem(student: Student) {
 fun StudentsScreenPreview() {
     ProfeDataTheme {
         StudentsScreen()
-=======
-fun StudentItem(name: String) {
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
-    ) {
-        Text(
-            text = name,
-            modifier = Modifier.padding(16.dp),
-            style = MaterialTheme.typography.bodyLarge
-        )
->>>>>>> Stashed changes
     }
 }
