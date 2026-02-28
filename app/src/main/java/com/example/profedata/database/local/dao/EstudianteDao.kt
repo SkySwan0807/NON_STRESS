@@ -2,15 +2,26 @@ package com.example.profedata.database.local.dao
 
 import androidx.room.*
 import data.local.entities.EstudianteEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface EstudianteDao {
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(estudiante: EstudianteEntity)
 
-    @Query("SELECT * FROM estudiantes WHERE cursoId = :cursoId ORDER BY nombre ASC")
-    suspend fun getByCurso(cursoId: Int): List<EstudianteEntity>
+    @Update
+    suspend fun update(estudiante: EstudianteEntity)
+
+    @Delete
+    suspend fun delete(estudiante: EstudianteEntity)
 
     @Query("DELETE FROM estudiantes WHERE id = :id")
     suspend fun deleteById(id: Int)
+
+    @Query("SELECT * FROM estudiantes WHERE cursoId = :cursoId ORDER BY nombre ASC")
+    fun getByCurso(cursoId: Int): Flow<List<EstudianteEntity>>
+
+    @Query("SELECT * FROM estudiantes WHERE id = :id")
+    suspend fun getById(id: Int): EstudianteEntity?
 }

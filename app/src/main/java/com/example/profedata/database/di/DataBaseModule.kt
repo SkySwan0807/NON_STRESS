@@ -1,4 +1,4 @@
-package com.example.trial.di
+package com.example.profedata.database.di
 
 import android.content.Context
 import com.example.profedata.database.local.db.AppDatabase
