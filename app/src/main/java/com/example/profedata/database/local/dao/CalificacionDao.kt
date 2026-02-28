@@ -1,7 +1,7 @@
 package com.example.profedata.database.local.dao
 
 import androidx.room.*
-import data.local.entities.CalificacionEntity
+import com.example.profedata.database.local.entities.CalificacionEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

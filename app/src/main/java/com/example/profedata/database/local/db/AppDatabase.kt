@@ -10,8 +10,13 @@ import com.example.profedata.database.local.dao.CursoDao
 import com.example.profedata.database.local.dao.EstudianteDao
 import com.example.profedata.database.local.dao.MateriaDao
 import com.example.profedata.database.local.dao.TareaDao
+import com.example.profedata.database.local.entities.CalificacionEntity
+import com.example.profedata.database.local.entities.CursoEntity
+import com.example.profedata.database.local.entities.EstudianteEntity
 import com.example.profedata.database.local.entities.MateriaEntity
-import data.local.entities.*
+import com.example.profedata.database.local.entities.PlanificacionEntity
+import com.example.profedata.database.local.entities.RecursoEducativoEntity
+import com.example.profedata.database.local.entities.TareaEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

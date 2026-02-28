@@ -1,10 +1,9 @@
-package data.local.entities
+package com.example.profedata.database.local.entities
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.example.profedata.database.local.entities.MateriaEntity
 
 @Entity(
     tableName = "planificaciones",

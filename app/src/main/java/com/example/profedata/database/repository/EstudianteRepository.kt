@@ -1,7 +1,7 @@
 package com.example.profedata.database.repository
 
 import com.example.profedata.database.local.dao.EstudianteDao
-import data.local.entities.EstudianteEntity
+import com.example.profedata.database.local.entities.EstudianteEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton

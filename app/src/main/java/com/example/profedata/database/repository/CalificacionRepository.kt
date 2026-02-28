@@ -1,7 +1,7 @@
 package com.example.profedata.database.repository
 
 import com.example.profedata.database.local.dao.CalificacionDao
-import data.local.entities.CalificacionEntity
+import com.example.profedata.database.local.entities.CalificacionEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton

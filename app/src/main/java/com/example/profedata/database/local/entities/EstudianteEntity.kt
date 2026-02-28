@@ -1,4 +1,4 @@
-package data.local.entities
+package com.example.profedata.database.local.entities
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
