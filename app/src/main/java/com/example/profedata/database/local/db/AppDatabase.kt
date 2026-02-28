@@ -81,26 +81,26 @@ abstract class AppDatabase : RoomDatabase() {
 
                 val materiaDao = db.materiaDao()
                 val cursoDao = db.cursoDao()
+                val estudianteDao = db.estudianteDao()
+                val tareaDao = db.tareaDao()
 
                 val gestionActual = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR)
+                val fechaActual = System.currentTimeMillis()
 
                 // 📘 Materias Primaria
                 val materiasPrimaria = listOf(
-                    MateriaEntity(nombre = "Matemática", descripcion = "Números, operaciones y resolución de problemas"),
-                    MateriaEntity(nombre = "Lenguaje y Comunicación", descripcion = "Lectura, escritura y comprensión"),
-                    MateriaEntity(nombre = "Ciencias Naturales", descripcion = "Estudio del entorno natural"),
-                    MateriaEntity(nombre = "Ciencias Sociales", descripcion = "Historia y geografía básica"),
-                    MateriaEntity(nombre = "Educación Física", descripcion = "Actividad física y recreación"),
-                    MateriaEntity(nombre = "Artes Plásticas", descripcion = "Expresión artística y creatividad"),
-                    MateriaEntity(nombre = "Música", descripcion = "Expresión musical básica"),
-                    MateriaEntity(nombre = "Valores", descripcion = "Formación ética y convivencia")
+                    MateriaEntity(nombre = "Matemática", descripcion = "Números y problemas"),
+                    MateriaEntity(nombre = "Lenguaje y Comunicación", descripcion = "Lectura y escritura"),
+                    MateriaEntity(nombre = "Ciencias Naturales", descripcion = "Entorno natural"),
+                    MateriaEntity(nombre = "Ciencias Sociales", descripcion = "Historia básica"),
+                    MateriaEntity(nombre = "Educación Física", descripcion = "Actividad física"),
+                    MateriaEntity(nombre = "Artes Plásticas", descripcion = "Creatividad"),
+                    MateriaEntity(nombre = "Música", descripcion = "Expresión musical"),
+                    MateriaEntity(nombre = "Valores", descripcion = "Convivencia")
                 )
 
-                materiasPrimaria.forEach {
-                    materiaDao.insert(it)
-                }
-
-                println("✅ Materias de primaria insertadas")
+                materiasPrimaria.forEach { materiaDao.insert(it) }
+                println("✅ Materias insertadas")
 
                 // 🏫 Cursos 1° a 6° Primaria
                 val cursosPrimaria = (1..6).map { grado ->
@@ -113,11 +113,61 @@ abstract class AppDatabase : RoomDatabase() {
                     )
                 }
 
-                cursosPrimaria.forEach {
-                    cursoDao.insert(it)
+                cursosPrimaria.forEach { cursoDao.insert(it) }
+                println("✅ Cursos insertados")
+
+                // ⚠ IMPORTANTE:
+                // Como los IDs son autoGenerate, los asumimos en orden de inserción
+                // (1..6 para cursos, 1..8 para materias en BD nueva)
+
+                // 👨‍🎓 Estudiantes de ejemplo (5 por curso)
+                for (cursoId in 1..6) {
+                    for (i in 1..5) {
+                        estudianteDao.insert(
+                            EstudianteEntity(
+                                nombre = "Estudiante $i - Curso $cursoId",
+                                cursoId = cursoId,
+                                fechaRegistro = fechaActual
+                            )
+                        )
+                    }
                 }
 
-                println("✅ Cursos de primaria insertados")
+                println("✅ Estudiantes insertados")
+
+                // 📚 Tareas de ejemplo (2 por curso en Matemática)
+                val ahora = System.currentTimeMillis()
+                val unaSemana = 7 * 24 * 60 * 60 * 1000L
+
+                for (cursoId in 1..6) {
+                    tareaDao.insert(
+                        TareaEntity(
+                            cursoId = cursoId,
+                            materiaId = 1, // Matemática
+                            titulo = "Ejercicios de suma",
+                            descripcion = "Resolver página 12",
+                            fechaAsignacion = ahora,
+                            fechaEntrega = ahora + unaSemana,
+                            tipo = "Tarea",
+                            ponderacion = 20f
+                        )
+                    )
+
+                    tareaDao.insert(
+                        TareaEntity(
+                            cursoId = cursoId,
+                            materiaId = 1,
+                            titulo = "Problemas aplicados",
+                            descripcion = "Resolver problemas prácticos",
+                            fechaAsignacion = ahora,
+                            fechaEntrega = ahora + unaSemana,
+                            tipo = "Evaluación",
+                            ponderacion = 30f
+                        )
+                    )
+                }
+
+                println("✅ Tareas insertadas")
 
                 println("🎉 Base de datos pre-poblada correctamente")
 
