@@ -22,6 +22,9 @@ interface EstudianteDao {
     @Query("SELECT * FROM estudiantes WHERE cursoId = :cursoId ORDER BY nombre ASC")
     fun getByCurso(cursoId: Int): Flow<List<EstudianteEntity>>
 
+    @Query("SELECT * FROM estudiantes ORDER BY nombre ASC")
+    fun getAll(): Flow<List<EstudianteEntity>>
+
     @Query("SELECT * FROM estudiantes WHERE id = :id")
     suspend fun getById(id: Int): EstudianteEntity?
 }

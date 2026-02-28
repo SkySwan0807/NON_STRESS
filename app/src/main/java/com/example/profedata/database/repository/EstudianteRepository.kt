@@ -31,6 +31,10 @@ class EstudianteRepository @Inject constructor(
         return estudianteDao.getByCurso(cursoId)
     }
 
+    fun obtenerTodos(): Flow<List<EstudianteEntity>> {
+        return estudianteDao.getAll()
+    }
+
     suspend fun obtenerPorId(id: Int): EstudianteEntity? {
         return estudianteDao.getById(id)
     }
