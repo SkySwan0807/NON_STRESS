@@ -1,7 +1,8 @@
 package data.local.dao
 
 import androidx.room.*
-import data.local.entities.EstudianteEntity
+import data.local.entities.CalificacionEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CalificacionDao {

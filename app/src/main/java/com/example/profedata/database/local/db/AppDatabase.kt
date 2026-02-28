@@ -21,8 +21,8 @@ import data.local.entities.*
 abstract class AppDatabase : RoomDatabase() {
     abstract fun materiaDao(): MateriaDao
     abstract fun estudianteDao(): EstudianteDao
-    abstract fun planificacionDao(): PlanificacionDao
-    abstract fun recursoEducativoDao(): RecursoEducativoDao
+    //abstract fun planificacionDao(): PlanificacionDao
+    //abstract fun recursoEducativoDao(): RecursoEducativoDao
     abstract fun tareaDao(): TareaDao
     abstract fun calificacionDao(): CalificacionDao
 }
