@@ -11,41 +11,41 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import java.sql.Date
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.profedata.ui.viewmodels.StudentsViewModel
 
-// Modelo de datos para probar
-data class Student(val id: Int, val nombre: String, val curso_id: String)
+// Modelo de datos (Asegúrate de que coincida con el del ViewModel)
+data class Student(val id: Int, val name: String, val grade: String)
 
 @Composable
-fun StudentsScreen() {
-    val students = listOf(
-        Student(1, "Alex Johnson", "10th Grade"),
-        Student(2, "Maria Garcia", "11th Grade" ),
-        Student(3, "Samuel Smith", "10th Grade" ),
-        Student(4, "Lucia Wong", "9th Grade" )
-    )
+fun StudentsScreen(
+    viewModel: StudentsViewModel = hiltViewModel()
+) {
+    // Observamos la lista desde el ViewModel
+    val students by viewModel.students.collectAsState()
 
     val backgroundGradient = Brush.verticalGradient(
         colors = listOf(Color(0xFFFFFFFF), Color(0xFFF5F5F5))
     )
 
     Box(modifier = Modifier.fillMaxSize()) {
-        // FONDO (Canvas)
+        // FONDO DECORATIVO
         Canvas(modifier = Modifier.fillMaxSize()) {
             drawRect(brush = backgroundGradient)
             drawCircle(
-                color = Color(0xFFE3F2FD).copy(alpha = 0.2f),
-                radius = size.width * 0.5f,
-                center = Offset(x = size.width * 0.8f, y = size.height * 0.2f)
+                color = Color(0xFFE3F2FD), // Azul pastel
+                radius = size.width * 0.6f,
+                center = Offset(x = size.width * 0.9f, y = size.height * 0.1f)
             )
         }
 
@@ -53,21 +53,21 @@ fun StudentsScreen() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .statusBarsPadding() // Evita que el título choque con la barra de arriba
+                .statusBarsPadding()
                 .padding(horizontal = 20.dp)
         ) {
             Spacer(modifier = Modifier.height(24.dp))
 
             Text(
                 text = "Estudiantes",
-                color = Color.Black,
+                color = Color(0xFF212121),
                 fontSize = 32.sp,
                 fontWeight = FontWeight.ExtraBold
             )
 
             Text(
                 text = "${students.size} alumnos registrados",
-                color = Color.Black.copy(alpha = 0.6f),
+                color = Color.Gray,
                 fontSize = 14.sp
             )
 
@@ -87,26 +87,24 @@ fun StudentsScreen() {
 
 @Composable
 fun StudentItem(student: Student) {
-    // Tarjeta con fondo translúcido (Glassmorphism sutil)
-    Surface(
-        color = Color.Black.copy(alpha = 0.1f),
+    ElevatedCard(
         shape = RoundedCornerShape(16.dp),
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
+        colors = CardDefaults.elevatedCardColors(containerColor = Color.White),
+        elevation = CardDefaults.elevatedCardElevation(defaultElevation = 2.dp)
     ) {
         Row(
-            modifier = Modifier
-                .padding(16.dp),
+            modifier = Modifier.padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Círculo para la inicial
             Surface(
                 modifier = Modifier.size(48.dp),
                 shape = CircleShape,
-                color = Color(0xFF3F51B5)
+                color = Color(0xFF2196F3)
             ) {
                 Box(contentAlignment = Alignment.Center) {
                     Text(
-                        text = student.nombre.take(1),
+                        text = student.name.take(1),
                         color = Color.White,
                         fontWeight = FontWeight.Bold
                     )
@@ -117,14 +115,14 @@ fun StudentItem(student: Student) {
 
             Column {
                 Text(
-                    text = student.nombre,
-                    color = Color.Black,
+                    text = student.name,
+                    color = Color(0xFF212121),
                     fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp
+                    fontSize = 17.sp
                 )
                 Text(
-                    text = student.curso_id,
-                    color = Color.Black.copy(alpha = 0.5f),
+                    text = student.grade,
+                    color = Color.Gray,
                     fontSize = 14.sp
                 )
             }
