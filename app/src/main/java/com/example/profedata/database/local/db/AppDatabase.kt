@@ -89,14 +89,10 @@ abstract class AppDatabase : RoomDatabase() {
 
                 // 📘 Materias Primaria
                 val materiasPrimaria = listOf(
-                    MateriaEntity(nombre = "Matemática", descripcion = "Números y problemas"),
-                    MateriaEntity(nombre = "Lenguaje y Comunicación", descripcion = "Lectura y escritura"),
-                    MateriaEntity(nombre = "Ciencias Naturales", descripcion = "Entorno natural"),
-                    MateriaEntity(nombre = "Ciencias Sociales", descripcion = "Historia básica"),
-                    MateriaEntity(nombre = "Educación Física", descripcion = "Actividad física"),
-                    MateriaEntity(nombre = "Artes Plásticas", descripcion = "Creatividad"),
-                    MateriaEntity(nombre = "Música", descripcion = "Expresión musical"),
-                    MateriaEntity(nombre = "Valores", descripcion = "Convivencia")
+                    MateriaEntity(nombre = "Robotica", descripcion = "Tecnologias"),
+                    MateriaEntity(nombre = "Ingles", descripcion = "Lectura y escritura "),
+                    MateriaEntity(nombre = "Troncales", descripcion = "Materias generales"),
+                    MateriaEntity(nombre = "Valores", descripcion = "Buen comportamiento"),
                 )
 
                 materiasPrimaria.forEach { materiaDao.insert(it) }
