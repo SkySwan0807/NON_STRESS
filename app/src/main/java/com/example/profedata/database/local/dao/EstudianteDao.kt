@@ -1,4 +1,4 @@
-package data.local.dao
+package com.example.profedata.database.local.dao
 
 import androidx.room.*
 import data.local.entities.EstudianteEntity

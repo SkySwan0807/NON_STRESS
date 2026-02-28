@@ -1,7 +1,7 @@
-package data.local.dao
+package com.example.profedata.database.local.dao
 
 import androidx.room.*
-import data.local.entities.MateriaEntity
+import com.example.profedata.database.local.entities.MateriaEntity
 
 @Dao
 interface MateriaDao {
